@@ -1,6 +1,5 @@
 #FUNCTIONS/CLASSES
 
-
 class FacilityInfo:
     def __init__(self,facilityname):
         self.facilityname = facilityname
@@ -11,7 +10,7 @@ class FacilityInfo:
     def __str__(self):
         return f"{self.facilityname}"
 
-facilityfile = open ("C:\CPRG216S\Assignments\pacilities.txt", "r")
+facilityfile = open ("data\pacilities.txt", "r")
 
 totalFacilities = []
 
@@ -29,7 +28,7 @@ def displayFacilityList():
 
 def writeFacilityListToFile():
     new_facilityname = input ("Enter Facility name: ")
-    edit_facility_file = open ("C:\CPRG216S\Assignments\pacilities.txt", "a+")
+    edit_facility_file = open ("data\pacilities.txt", "a+")
     edit_facility_file.write(f"{new_facilityname}")
     edit_facility_file.close()
     return formatFacilityInfo()
@@ -38,20 +37,22 @@ def writeFacilityListToFile():
 
 
 #MENU
-facility_select = 1
 
-while facility_select > 0:
-    print(f"Facility Menu\n0 - Return to Main Menu\n1 - Display Facilities List\n2 - Add Facility")
-    facility_select = int(input("Enter Option: "))
-    print("")
+def facility_menu():
+    facility_select = 1
 
-    if facility_select == 1:
-        formatFacilityInfo()
-        displayFacilityList()
+    while facility_select > 0:
+        print(f"Facility Menu\n0 - Return to Main Menu\n1 - Display Facilities List\n2 - Add Facility")
+        facility_select = int(input("Enter Option: "))
         print("")
 
-    if facility_select == 2:
-        writeFacilityListToFile()
-        print("")
+        if facility_select == 1:
+            formatFacilityInfo()
+            displayFacilityList()
+            print("")
+
+        if facility_select == 2:
+            writeFacilityListToFile()
+            print("")
     
 
