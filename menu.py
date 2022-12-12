@@ -13,15 +13,15 @@ def mainMenu():
 
         # Opens Doctor menu
         if main_menu_option == 1:
-            print("In Development, please try another option")
+            import doctor
 
         # Opens Facility menu
         elif main_menu_option == 2:
-            print("In Development, please try another option")
+            import facilities
     
         # Opens Laboratory menu
         elif main_menu_option == 3:
-            print("In Development, please try another option")
+            import laboratory
         
         # Opens Patient menu
         elif main_menu_option == 4:
