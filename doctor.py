@@ -103,4 +103,4 @@ option = 1
 doctors_list = readDoctorsFile()
 
 while option != 0:
-    option = doctorsMenu
+    option = doctorsMenu #ur dum
