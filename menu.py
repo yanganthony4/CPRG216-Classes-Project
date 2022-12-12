@@ -25,6 +25,6 @@ def mainMenu():
         
         # Opens Patient menu
         elif main_menu_option == 4:
-            import patient.py
+            import patient
 
 mainMenu()

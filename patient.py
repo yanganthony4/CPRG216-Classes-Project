@@ -1,5 +1,5 @@
 # Creation of Patient class
-class PatientInfo:
+class formatPatientInfo:
 
     # Initialization with patient's characterization
     def __init__(self, id, name, diagnosis, gender, age):
@@ -17,16 +17,40 @@ class PatientInfo:
     def __repr__(self):
         return f'{self.id} {self.name} {self.diagnosis} {self.gender} {self.age}'
 
+
 # Function for main patient menu for selecting options
 def patientsMenu():
+    option = 1
+    patients_list = readPatientsFile(formatPatientInfo)
 
-    # Printing out 
-    print("\nPatient Menu")
-    print("0 - Return to Main Menu \n1 - Display patient's list \n2 - Search for patient by ID \n3 - Add patient \n4 - Edit patient info")
-    
-    # Input for option choice and returns it
-    option = int(input(("Enter option: ")))
-    return option
+    while option != 0:
+
+        # Printing out 
+        print("\nPatient Menu")
+        print("0 - Return to Main Menu \n1 - Display patient's list \n2 - Search for patient by ID \n3 - Add patient \n4 - Edit patient info")
+        option = int(input(("Enter option: ")))
+        
+        # Displays patient list
+        if option == 1:
+            displayPatientsList(patients_list)
+
+        # Searches for patient by ID
+        elif option == 2:
+            print(searchPatientById(patients_list))
+
+        # Enter in new patient data
+        elif option == 3:
+            new_patient = enterPatientInfo()
+            addPatientToList(new_patient, patients_list)
+
+        # Edit existing patient data
+        elif option == 4:
+            editPatientInfo(patients_list)
+            displayPatientsList(patients_list)
+
+    # Updates save file after data entry finished
+    writePatientsListToFile(patients_list)
+
 
 # Function for entering in a new patient
 def enterPatientInfo():
@@ -39,11 +63,11 @@ def enterPatientInfo():
     age = input("Enter Patient age: ")
 
     # Creates new object and returns object
-    patient = PatientInfo(id, name, diagnosis, gender, age)
+    patient = formatPatientInfo(id, name, diagnosis, gender, age)
     return patient
 
 # Function for reading save file in data folder
-def readPatientsFile(PatientInfo):
+def readPatientsFile(formatPatientInfo):
 
     # Opens and reads file, sets up empty list of patients
     with open('data\patients.txt', 'r') as file:
@@ -57,7 +81,7 @@ def readPatientsFile(PatientInfo):
                 line = line.replace("\n", "").split("_")
 
                 # Creates new object and then adds to end of a list, returning it 
-                patient = PatientInfo(line[0], line[1], line[2], line[3], line[4])
+                patient = formatPatientInfo(line[0], line[1], line[2], line[3], line[4])
                 patients_list.append(patient)
         return patients_list
 
@@ -120,34 +144,7 @@ def addPatientToList(patient, patients_list):
     patients_list.append(patient)
     return patients_list
 
-# Setting initial options value and retrieves patient list from a save file in the data folder
-option = 1
-patients_list = readPatientsFile(PatientInfo)
-
-# Filtering of options until "0" inputted by user
-while option != 0:
-    option = patientsMenu()
-    
-    # Displays patient list
-    if option == 1:
-        displayPatientsList(patients_list)
-
-    # Searches for patient by ID
-    elif option == 2:
-        print(searchPatientById(patients_list))
-
-    # Enter in new patient data
-    elif option == 3:
-        new_patient = enterPatientInfo()
-        addPatientToList(new_patient, patients_list)
-
-    # Edit existing patient data
-    elif option == 4:
-        editPatientInfo(patients_list)
-        displayPatientsList(patients_list)
-
-# Updates save file after data entry finished
-writePatientsListToFile(patients_list)
+patientsMenu()
 
 
 
