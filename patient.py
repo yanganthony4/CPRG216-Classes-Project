@@ -36,7 +36,13 @@ def patientsMenu():
 
         # Searches for patient by ID
         elif option == 2:
-            print(searchPatientById(patients_list))
+            patient = [0, 0]
+            patient[0], patient[1] = searchPatientById(patients_list)
+            neg_one = -1
+            if patient[0] == neg_one:
+                print("Patient with ID " + patient[1] + " not in patient file")
+            else:
+                print(patient[0])
 
         # Enter in new patient data
         elif option == 3:
@@ -92,24 +98,27 @@ def searchPatientById(patients_list):
     search_id = input("\nEnter the Patient ID: ")
     for patient in patients_list:
         if patient.id == search_id:
-            return patient
+            return patient, search_id
     
     # Returns "not found" message if no ID is matched
-    return "Patient with ID " + search_id + " not in patient file"
+    return -1, search_id
 
 # Function for editing existing patients
 def editPatientInfo(patients_list):
 
     # Use earlier created search function to find the desired patient info to edit, prints result
     patient = searchPatientById(patients_list)
-    print(patient)
-
+    neg_one = -1
+    if patient[0] == neg_one:
+                print("Patient with name " + patient[1] + " not in patient file")
+                
     # Gathers inputs for new data and updates objects attributes
-    patient.name = input("Enter new Name: ")
-    patient.diagnosis = input("Enter new diagnosis: ")
-    patient.gender = input("Enter new gender: ")
-    patient.age = input("Enter new age: ")
-    return patient
+    else:
+        patient.name = input("Enter new Name: ")
+        patient.diagnosis = input("Enter new diagnosis: ")
+        patient.gender = input("Enter new gender: ")
+        patient.age = input("Enter new age: ")
+        return patient
 
 # Function for displaying patient list
 def displayPatientsList(patients_list):

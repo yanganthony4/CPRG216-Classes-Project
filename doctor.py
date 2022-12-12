@@ -6,21 +6,41 @@ class formatDrInfo:
         self.schedule = schedule
         self.qualification = qualification
         self.room_number = room_number
+        
+    # Formatting string representation for printing of results
+    def __str__(self):
+        return f'{self.id:<4s}  {self.name:<14s}  {self.speciality:<20s}  {self.schedule:<10s}  {self.qualification:<15s}  {self.room_number:<15s}'
+    
+    # Formatting representation in later list.
+    def __repr__(self):
+        return f'{self.id} {self.name} {self.speciality} {self.schedule} {self.qualification} {self.room_number}'
 
 def doctorsMenu():
-    print("Doctor's Menu")
-    print("0 - Return to Main Menu\n1 - Display Doctors list\n2 - Search for doctor by ID\n3 - Search for doctor by name\n4 - Add doctor\n5 - Edit doctor info")
     option = 1
     doctors_list = readDoctorsFile()
     while option != 0:
+        print("\nDoctor's Menu")
+        print("0 - Return to Main Menu\n1 - Display Doctors list\n2 - Search for doctor by ID\n3 - Search for doctor by name\n4 - Add doctor\n5 - Edit doctor info")
         option = int(input("Enter option: "))
+        print("\n")
         if option == 1:
             displayDoctorsList(doctors_list)
         elif option == 2:
-            searchDoctorById(doctors_list)
+            doctor = [0, 0]
+            doctor[0], doctor[1] = searchDoctorById(doctors_list)
+            neg_one = -1
+            if doctor[0] == neg_one:
+                print("Patient with ID " + doctor[1] + " not in patient file")
+            else:
+                print(doctor[0])
         elif option == 3:
-            searchDoctorByName(doctors_list)
-            
+            doctor = [0, 0]
+            doctor[0], doctor[1] = searchDoctorByName(doctors_list)
+            neg_one = -1
+            if doctor[0] == neg_one:
+                print("Patient with name " + doctor[1] + " not in patient file")
+            else:
+                print(doctor[0])
         elif option == 4:
             doctor = enterDrInfo()
             addDrToList(doctor,doctors_list)
@@ -28,9 +48,6 @@ def doctorsMenu():
             editDoctorInfo(doctors_list)
             displayDoctorsList(doctors_list)
 
-
-
-        
 def enterDrInfo():
     id = input("Enter Dr ID: ")
     name = input("Enter Dr name: ")
@@ -52,32 +69,36 @@ def readDoctorsFile():
     return doctors_list
 
 def searchDoctorById(doctors_list):
-    search_id = int(input("Enter the doctor ID: "))
+    search_id = input("Enter the doctor ID: ")
     for doctor in doctors_list:
         if doctor.id == search_id:
-            return doctor
-    return "Doctor with ID " + search_id + " not in doctor file"
+            return doctor, search_id
+    return -1, search_id
 
 def searchDoctorByName(doctors_list):
     search_name = input("Enter the doctor name: ")
     for doctor in doctors_list:
         if doctor.name == search_name:
-            return doctor
-    return "Doctor with name " + search_name + " not in doctor file"
+            return doctor, search_name
+    return -1, search_name
 
 def editDoctorInfo(doctors_list):
-    doctor = searchDoctorById(doctors_list)
-    print(doctor)
-
-    doctor.name = input("Enter new name: ")
-    doctor.speciality = input("Enter new speciality in: ")
-    doctor.schedule = input("Enter new schedule: ")
-    doctor.qualification = input("Enter new qualifications: ")
-    doctor.room_number = input("Enter new room number: ")
-    return doctor
+    doctor = [0, 0]
+    doctor[0], doctor[1] = searchDoctorById(doctors_list)
+    neg_one = -1
+    if doctor[0] == neg_one:
+        print("Patient with name " + doctor[1] + " not in patient file")
+    else:
+        print(doctor[0])
+        doctor_edit = doctor[0]
+        doctor_edit.name = input("Enter new name: ")
+        doctor_edit.speciality = input("Enter new speciality in: ")
+        doctor_edit.schedule = input("Enter new schedule: ")
+        doctor_edit.qualification = input("Enter new qualifications: ")
+        doctor_edit.room_number = input("Enter new room number: ")
+        return doctor_edit
 
 def displayDoctorsList(doctors_list):
-    print("\n")
     for doctor in doctors_list:
         print(doctor)
     
@@ -99,8 +120,4 @@ def addDrToList(doctor, doctors_list):
     doctors_list.append(doctor)
     return(doctors_list)
 
-option = 1
-doctors_list = readDoctorsFile()
-
-while option != 0:
-    option = doctorsMenu
+doctorsMenu()
