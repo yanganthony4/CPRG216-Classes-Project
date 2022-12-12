@@ -10,7 +10,7 @@ class FacilityInfo:
     def __str__(self):
         return f"{self.facilityname}"
 
-facilityfile = open ("data\pacilities.txt", "r")
+facilityfile = open ("/workspaces/Classes/data/pacilities.txt", "r")
 
 totalFacilities = []
 
@@ -28,7 +28,7 @@ def displayFacilityList():
 
 def writeFacilityListToFile():
     new_facilityname = input ("Enter Facility name: ")
-    edit_facility_file = open ("data\pacilities.txt", "a+")
+    edit_facility_file = open ("/workspaces/Classes/data/pacilities.txt", "a+")
     edit_facility_file.write(f"{new_facilityname}")
     edit_facility_file.close()
     return formatFacilityInfo()
@@ -55,4 +55,4 @@ def facility_menu():
             writeFacilityListToFile()
             print("")
     
-
+facility_menu()
