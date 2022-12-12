@@ -11,7 +11,7 @@ class formatLabInfo:
         return f'{self.lab_name}{self.cost}'
 
 def readLaboratoriesFile(formatLabInfo):
-    with open('laboratories.txt', 'r') as file:
+    with open('data\laboratories.txt', 'r') as file:
         labs_list = []
 
         for line in file:
@@ -37,7 +37,7 @@ def enterLaboratoryInfo():
     return lab
 
 def writeLabsListToFile(labs_list):
-    f = open('laboratories.txt', 'a')
+    f = open('data\laboratories.txt', 'a')
     f.truncate(0)
 
     for i in labs_list:
