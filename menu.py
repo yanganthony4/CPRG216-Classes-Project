@@ -8,6 +8,7 @@ def mainMenu():
     while main_menu_option != 0:
 
         # Print instructions message and gets input from user
+        print("Welcome to the Alberta Rural Patient Care Management System\n")
         print("Main Menu \n0 - Close application\n1 - Doctors\n2 - Facilities\n3 - Laboratories\n4 - Patients")
         main_menu_option = int(input("Enter option: "))
 
