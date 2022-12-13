@@ -17,7 +17,7 @@ totalFacilities = []
 def formatFacilityInfo():
     
     for line in facilityfile:
-        items = line.replace("\n","").split(" ")
+        items = line.split("\n")
         facility = FacilityInfo (items[0])
         totalFacilities.append(facility)
     return totalFacilities
