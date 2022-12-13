@@ -170,21 +170,25 @@ def displayDoctorsList(doctors_list):
     for doctor in doctors_list:
         print(doctor)
     
-# Writes 
+# Writes doctor to external doctor save file.
 def writeDoctorsListToFile(doctors_list):
-    f = open("data\doctors.txt")
+
+    # Initial configurations, opening doctor file.
+    f = open("data\doctors.txt","a")
     f.truncate(0)
 
+    # Creates a list with doctor info for each doctor one by one before writing it into a line in the txt file.
     for doctor in doctors_list:
         doctors_write_list = []
         doctors_write_list.append(doctor.id)
         doctors_write_list.append(doctor.name)
         doctors_write_list.append(doctor.speciality)
         doctors_write_list.append(doctor.schedule)
-        doctors_write_list.append(doctor.qualifications)
+        doctors_write_list.append(doctor.qualification)
         doctors_write_list.append(doctor.room_number)
         f.write("_".join(doctors_write_list))
 
+# Add doctor to list function
 def addDrToList(doctor, doctors_list):
     doctors_list.append(doctor)
     return(doctors_list)

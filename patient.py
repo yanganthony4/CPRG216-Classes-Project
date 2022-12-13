@@ -114,10 +114,12 @@ def editPatientInfo(patients_list):
                 
     # Gathers inputs for new data and updates objects attributes
     else:
-        patient.name = input("Enter new Name: ")
-        patient.diagnosis = input("Enter new diagnosis: ")
-        patient.gender = input("Enter new gender: ")
-        patient.age = input("Enter new age: ")
+        print(patient[0])
+        patient_edit = patient[0]
+        patient_edit.name = input("Enter new Name: ")
+        patient_edit.diagnosis = input("Enter new diagnosis: ")
+        patient_edit.gender = input("Enter new gender: ")
+        patient_edit.age = input("Enter new age: ")
         return patient
 
 # Function for displaying patient list
