@@ -1,3 +1,12 @@
+# Anthony Yang, Kevin Huang, Kevin Liu, Vinh Huynh
+# December 12, 2022
+
+# Program is designed for Alberta Rural Patient Care (ARPC), it is data base that contains information
+# on patients, doctors, facilities and labatories. Program contains a main menu which lets the user access
+# the patients, doctors, faciities and labatory menus. When the user choses one of the 4 options (patients/doctors/facilities/labatories)
+# they can have the option to veiw the list of every patient/doctor/facility/lab. The user can also edit the lists
+# either by adding,removing or editing said lists. The program will continue to run until the user enters 0 to exit in the main menu.
+
 
 
 # Function for main menu
