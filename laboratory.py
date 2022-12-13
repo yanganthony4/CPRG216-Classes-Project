@@ -52,23 +52,23 @@ def addLabtoList(lab, labs_list):
     return labs_list
 
 def laboratoriesMenu():
-    print('\nLaboratory Menu')
-    print('0 - Return to Main Menu \n1 - Display laboratories list \n2 - Add laboratory')
+    labs_option = 1
+    labs_list = readLaboratoriesFile(formatLabInfo)
 
-    labs_option = int(input('Enter option: '))
-    return labs_option
+    while labs_option != 0:
+        print('\nLaboratory Menu')
+        print('0 - Return to Main Menu \n1 - Display laboratories list \n2 - Add laboratory')
 
-labs_option = 1
-labs_list = readLaboratoriesFile(formatLabInfo)
+        labs_option = int(input('Enter option: '))
 
-while labs_option != 0:
-    labs_option = laboratoriesMenu()
-
-    if labs_option == 1:
-        displayLabsList(labs_list)
+        if labs_option == 1:
+            displayLabsList(labs_list)
     
-    elif labs_option == 2:
-        new_lab = enterLaboratoryInfo()
-        addLabtoList(new_lab, labs_list)
+        elif labs_option == 2:
+            new_lab = enterLaboratoryInfo()
+            addLabtoList(new_lab, labs_list)
 
-writeLabsListToFile(labs_list)
+    writeLabsListToFile(labs_list)
+
+laboratoriesMenu()
+

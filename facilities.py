@@ -54,5 +54,6 @@ def facility_menu():
         if facility_select == 2:
             writeFacilityListToFile()
             print("")
-    
+
+facility_menu()    
 
