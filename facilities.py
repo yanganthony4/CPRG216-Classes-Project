@@ -42,7 +42,7 @@ def facility_menu():
     facility_select = 1
 
     while facility_select > 0:
-        print(f"Facility Menu\n0 - Return to Main Menu\n1 - Display Facilities List\n2 - Add Facility")
+        print(f"\nFacility Menu\n0 - Return to Main Menu\n1 - Display Facilities List\n2 - Add Facility")
         facility_select = int(input("Enter Option: "))
         print("")
 
