@@ -1,19 +1,20 @@
 #FUNCTIONS/CLASSES
 
+#Creating a facility Class
 class FacilityInfo:
     def __init__(self,facilityname):
         self.facilityname = facilityname
 
     def __repr__(self):
         return f"{self.facilityname}"
-
+#Formats facility information (attributes)- for display
     def __str__(self):
         return f"{self.facilityname}"
 
 facilityfile = open ("data/pacilities.txt", "r")
-
 totalFacilities = []
 
+#Takes information from facility text and puts them into a list
 def formatFacilityInfo():
     
     for line in facilityfile:
@@ -22,10 +23,12 @@ def formatFacilityInfo():
         totalFacilities.append(facility)
     return totalFacilities
 
+#Display all facilities on the terminal 
 def displayFacilityList():
     for i in range (0,len(totalFacilities)):
         print(totalFacilities[i])
 
+#Formats all the list of facilities back into facilities.txt file
 def writeFacilityListToFile():
     new_facilityname = input ("Enter Facility name: ")
     edit_facility_file = open ("data/pacilities.txt", "a+")
@@ -56,4 +59,3 @@ def facility_menu():
             print("")
 
 facility_menu()    
-
